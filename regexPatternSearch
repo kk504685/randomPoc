@@ -1,0 +1,27 @@
+if __name__=='__main__':
+    
+    import re
+    ipStr='INDUS AAUSNZ CAN'
+    opArr=[]
+    arr1=[]
+    for el in ['IND','AUS','US']:
+        pattern=re.compile(el)
+
+        if(bool(pattern.search(ipStr))):
+            op1=pattern.search(ipStr)
+            arr1.append(op1.span()[0])
+            if(el=='IND'):
+                arr1.append('INDIA')
+            elif(el=='AUS'):
+                arr1.append('AUSTRALIA')
+            elif(el=='US'):
+                arr1.append('UNITED STATES')
+            opArr.append(arr1)
+            arr1=[]
+
+    opStr=''
+    sortedArr=sorted(opArr)
+    for ind,el in enumerate(sortedArr):
+        opStr=opStr+el[1] if(len(sortedArr)==ind+1) else opStr+el[1]+':'
+    
+    print(opStr)
